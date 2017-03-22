@@ -12,6 +12,7 @@ const React = require('react');
 const ReactDOMServer = require('react-dom/server');
 const express = require('express');
 const bodyParser = require('body-parser');
+const helmet = require('helmet');
 
 const routes = require('shared/routes');
 const errors = require('shared/errors');
@@ -58,6 +59,13 @@ let cookieParser = require('cookie-parser');
 app.use(cookieParser(process.env.COOKIE_SECRET, {
   path: '/',
   httpOnly: true
+}));
+
+// Security
+app.use(helmet({
+  hsts: {
+    force: process.env.NODE_ENV === 'production'
+  }
 }));
 
 /**

@@ -17,7 +17,7 @@ exports.seed = function(knex, Promise) {
       apply_url: faker.internet.url(),
       company_name: faker.company.companyName(),
       company_url: faker.internet.url(),
-      company_logo_url: null,
+      company_logo_url: faker.random.arrayElement([null, 'http://www.placehold.it/350x150']),
       company_email: faker.internet.exampleEmail(),
       is_live: true,
       is_featured: false,
