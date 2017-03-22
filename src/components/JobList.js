@@ -13,6 +13,7 @@ const JobList = React.createClass({
 
   render() {
     let jobs = this.props.data || [];
+    let jobCount = jobs.length;
 
     return (
       <div className="job-list">
@@ -25,6 +26,7 @@ const JobList = React.createClass({
             })}
           </div>
         </div>
+        {this._renderJobCount(jobCount)}
       </div>
     );
   },
@@ -36,6 +38,14 @@ const JobList = React.createClass({
         <p>Maybe consider <a href="/jobs/create">adding one?</a></p>
       </div>
     );
+  },
+
+  _renderJobCount(jobCount) {
+    if (!jobCount) {
+      return;
+    }
+
+    return <p className="text-center">Showing {jobCount} jobs</p>;
   }
 });
 

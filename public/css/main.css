@@ -57,6 +57,10 @@ body {
   font-weight: bold;
   margin-right: 1em;
 }
+.job-list img {
+  max-width: 100px;
+  max-height: 100px;
+}
 
 /**
  * Job detial page
