@@ -59,7 +59,8 @@ body {
 }
 .job-list img {
   max-width: 100px;
-  max-height: 100px;
+  max-height: 50px;
+  border: 1px solid #777;
 }
 
 /**
