@@ -65,6 +65,14 @@ function send(options) {
     from: process.env.FROM_EMAIL
   }, options);
 
+  // Development - don't actually send email - just print it to console!
+  if (process.env.NODE_ENV === 'development') {
+    console.log("[ EMAIL ] ================================================\n"); // eslint-disable-line
+    console.log(JSON.stringify(mailOptions, null, 4)); // eslint-disable-line
+
+    return Promise.resolve(true);
+  }
+
   // Send email via Mailgun API
   return fetch(process.env.MAILGUN_API_URL + '/messages', {
       body: JSON.stringify(mailOptions),

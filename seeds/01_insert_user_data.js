@@ -15,8 +15,8 @@ exports.seed = function(knex, Promise) {
       knex.raw("SELECT setval(pg_get_serial_sequence('jobs', 'id'), coalesce(max(id),0) + 1, false) FROM jobs")
     )).then(_ => Promise.join(
       // Inserts seed entries
-      knex('users').insert({ name: 'Vance Lucas', email: 'czaries@gmail.com', password: hashedPassword, is_active: true, is_admin: true, dt_created: now }),
-      knex('users').insert({ name: 'Chester Tester', email: 'chester@tester.com', password: hashedPassword, is_active: true, is_admin: false, dt_created: now }),
+      knex('users').insert({ name: 'Admin User', email: 'admin@example.com', password: hashedPassword, is_active: true, is_admin: true, dt_created: now }),
+      knex('users').insert({ name: 'No Credits', email: 'chester@tester.com', password: hashedPassword, is_active: true, is_admin: false, dt_created: now }),
       knex('users').insert({ name: 'Boaty McBoatface', email: 'user@example.com', password: hashedPassword, is_active: true, is_admin: false, dt_created: now })
     )).then(_ => Promise.join(
       // Job credits
