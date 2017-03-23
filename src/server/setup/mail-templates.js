@@ -20,3 +20,10 @@ mailer.addTemplate('jobs.create.after', {
 }, {
   subject: preSubject + 'New Job Listing Created'
 });
+
+mailer.addTemplate('jobs.approve.after', {
+  job: Joi.object().required(),
+  user: Joi.object().required()
+}, {
+  subject: preSubject + 'Job Listing Approved!'
+});

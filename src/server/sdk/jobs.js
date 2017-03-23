@@ -7,6 +7,7 @@ const config = require('shared/config');
 const sharedUtils = require('shared/utils');
 const errors = require('shared/errors');
 const mailer = require('lib/mailer');
+const userSdk = require('server/sdk/users');
 const validator = require('server/validator');
 const Joi = validator.Joi;
 
@@ -254,6 +255,14 @@ function approve(id, params) {
       .where({ id })
       .then(function (id) {
         return Object.assign({}, job, updateData);
+      })
+      .then((job) => {
+        // Send job approved email, but don't wait for it to return response
+        userSdk.findById(job.user_id).then(user => {
+          mailer.sendTemplate('jobs.approve.after', { job, user }, { to: user.email, bcc: process.env.ADMIN_EMAILS });
+        });
+
+        return job;
       })
       .then(_formatForApi);
   });
